@@ -173,9 +173,9 @@ namespace LearnWord
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("פירוש המילה היא: " + hebrew, "התשובה", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            countwithoutmistake = -1;
-            recheck = 1;
+            removeStuffFromWordArr(randomNum);
+            textBox1.Clear();
+            process();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
