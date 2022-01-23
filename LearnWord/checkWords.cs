@@ -98,11 +98,14 @@ namespace LearnWord
                     randomNum = GetRandomNum();
                 }
                 lastRandomNum = randomNum;
-                wordArray[randomNum].upWere();
-                english = wordArray[randomNum].getEgnlish();
-                hebrew = wordArray[randomNum].getHebrew();
-                EnglishLabel.Text = english;
-                wereStatusLabel.Text = "מילה זאת היית כבר " + wordArray[randomNum].getWere().ToString() + " והוצלחה " + wordArray[randomNum].getSucess().ToString() + " פעמים";
+                if (wordArray.Length != 0)
+                {
+                    wordArray[randomNum].upWere();
+                    english = wordArray[randomNum].getEgnlish();
+                    hebrew = wordArray[randomNum].getHebrew();
+                    EnglishLabel.Text = english;
+                    wereStatusLabel.Text = "מילה זאת היית כבר " + wordArray[randomNum].getWere().ToString() + " והוצלחה " + wordArray[randomNum].getSucess().ToString() + " פעמים";
+                }
 
 
             }
@@ -121,7 +124,19 @@ namespace LearnWord
         {
             if (e.KeyCode==Keys.Enter && textBox1.Text!="")
             {
-                if (checkifMatch(textBox1.Text,wordArray[randomNum].getHebrew()))
+                if(wordArray.Length == 0)
+                {
+                    MessageBox.Show("מטורף! הצלחת את כל המילים במאגר! אש עליך! כל הכבוד!", "סחטיין עליך");
+                    //this.ForeColor = Color.GreenYellow;
+                    this.BackColor = Color.GreenYellow;
+                    label2.Hide();
+                    textBox1.Hide();
+                    EnglishLabel.Text = "!עבודה טובה"
+                        + "\n" + "הצלחת לפתור את כלל המילים במאגר ב" + countdid + " מהלכים"
+                        + "\n" + "סך המילים שלא ידעת: " + (countdid - correct).ToString();
+                    return;
+                }
+                if (checkifMatch(textBox1.Text,wordArray[randomNum].getHebrew()) && wordArray.Length != 0)
                 {
                     if(textBox1.Text!=hebrew)
                     {
@@ -189,15 +204,15 @@ namespace LearnWord
         private bool checkifkown(Word wordOn)
         {
             bool condition1 = (wordOn.getSucess() > 3) || (wordOn.getSucess()==wordOn.getWere() && wordOn.getWere()==2);
-            bool condition2 = (wordOn.getEgnlish().StartsWith("a") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
-            bool condition3 = (wordOn.getEgnlish().StartsWith("b") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
-            bool condition4 = (wordOn.getEgnlish().StartsWith("c") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
-            bool condition5 = (wordOn.getEgnlish().StartsWith("d") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
-            bool condition6 = (wordOn.getEgnlish().StartsWith("e") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
-            bool condition7 = (wordOn.getEgnlish().StartsWith("f") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
+            //bool condition2 = (wordOn.getEgnlish().StartsWith("a") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
+            //bool condition3 = (wordOn.getEgnlish().StartsWith("b") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
+            //bool condition4 = (wordOn.getEgnlish().StartsWith("c") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
+            //bool condition5 = (wordOn.getEgnlish().StartsWith("d") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
+            //bool condition6 = (wordOn.getEgnlish().StartsWith("e") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
+            //bool condition7 = (wordOn.getEgnlish().StartsWith("f") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
 
 
-            return condition1 || condition2 || condition3 || condition4 || condition5 || condition6 || condition7;
+            return condition1 /*|| condition2 || condition3 || condition4 || condition5 || condition6 || condition7*/;
         }
 
         private void removeStuffFromWordArr(int index)
