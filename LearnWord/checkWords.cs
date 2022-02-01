@@ -188,7 +188,9 @@ namespace LearnWord
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            removeStuffFromWordArr(randomNum);
+            wordArray[randomNum].upSucess();
+            wordArray[randomNum].upSucess();
+            wordArray[randomNum].upSucess();
             textBox1.Clear();
             process();
         }
@@ -203,7 +205,7 @@ namespace LearnWord
         }
         private bool checkifkown(Word wordOn)
         {
-            bool condition1 = (wordOn.getSucess() > 3) || (wordOn.getSucess()==wordOn.getWere() && wordOn.getWere()==2);
+            bool condition1 = (wordOn.getSucess() > 3) || (wordOn.getSucess()==wordOn.getWere() && wordOn.getWere()==1);
             //bool condition2 = (wordOn.getEgnlish().StartsWith("a") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
             //bool condition3 = (wordOn.getEgnlish().StartsWith("b") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
             //bool condition4 = (wordOn.getEgnlish().StartsWith("c") && (wordOn.getSucess() == 1) && wordOn.getSucess() == wordOn.getWere());
