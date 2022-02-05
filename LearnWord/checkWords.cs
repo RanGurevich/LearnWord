@@ -191,6 +191,9 @@ namespace LearnWord
             wordArray[randomNum].upSucess();
             wordArray[randomNum].upSucess();
             wordArray[randomNum].upSucess();
+            wordArray[randomNum].upWere();
+            wordArray[randomNum].upWere();
+            wordArray[randomNum].upWere();
             textBox1.Clear();
             process();
         }
